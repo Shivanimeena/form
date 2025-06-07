@@ -1,0 +1,52 @@
+<div class="form-container">
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <label>Name:</label>
+    <input type="text" formControlName="name" />
+
+    <label>Date of Birth:</label>
+    <input type="date" formControlName="dob" />
+
+    <label>Birth Place:</label>
+    <input type="text" formControlName="birthPlace" />
+
+    <label>Time:</label>
+    <input type="time" formControlName="time" />
+
+    <label>Contact No.:</label>
+    <input type="text" formControlName="contactNo" />
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+<!-- Table shown only when submitted data exists -->
+<div *ngIf="submittedData.length > 0" class="table-container">
+  <h3>Submitted Data</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>DOB</th>
+        <th>Birth Place</th>
+        <th>Time</th>
+        <th>Contact No.</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of submittedData; let i = index">
+        <td>{{ data.name }}</td>
+        <td>{{ data.dob }}</td>
+        <td>{{ data.birthPlace }}</td>
+        <td>{{ data.time }}</td>
+        <td>{{ data.contactNo }}</td>
+        <td><button (click)="deleteRow(i)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- WhatsApp Floating Button (Separate from Submit) -->
+<button class="whatsapp-button" (click)="openWhatsApp()">
+  <img src="https://img.icons8.com/ios-filled/30/ffffff/whatsapp.png" alt="WhatsApp" />
+</button>
